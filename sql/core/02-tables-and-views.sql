@@ -56,16 +56,10 @@ CREATE TABLE flight (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE manning (
-  flight_code varchar(14) NOT NULL DEFAULT '',
-  employee_id INT(12) NOT NULL DEFAULT '0',
-  rank ENUM('office','ground','cabin','pic','fo','so','to','aso') NOT NULL DEFAULT 'office',
-  UNIQUE KEY (flight_code, employee_id, rank),
-  KEY fk_flight_code (flight_code),
-  CONSTRAINT flight_code_match FOREIGN KEY (flight_code) REFERENCES flight (flight_code),
-  KEY fk_member_rank (rank),
-  CONSTRAINT member_rank_match FOREIGN KEY (rank) REFERENCES staff (rank),
-  KEY fk_employee_id (employee_id),
-  CONSTRAINT employee_id_match FOREIGN KEY (employee_id) REFERENCES staff (employee_id)
+  flight_code VARCHAR(14),
+  employee_id INT(12),
+  rank VARCHAR(15),
+  UNIQUE KEY (flight_code, employee_id, rank)
 );
 
 /*** outstanding... Agents, Booking, Booking2Agent ***/
