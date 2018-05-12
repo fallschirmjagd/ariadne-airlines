@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-
+SCRIPT=$(readlink -f $0)
+SCRIPTPATH=`dirname $SCRIPT`
+SCRIPTPATH="$SCRIPTPATH/"
+SQLPATH="$SCRIPTPATH/../sql/core/"
 
 RESET="\e[0m"
 YELLOW="\e[93m"
@@ -82,11 +85,17 @@ fi
 if [ "$ERR" != "0" ]
 then
     echo ""
-    echo -e "${RED}${BOLD}ERROR!${RESET} Setup failed."
+    echo -e "${RED}${BOLD}ERROR!${RESET} Setup has failed."
     echo ""
     exit 1
 else
-    echo "We are good to go"
+    echo -e "Building ${BOLD}${YELLOW}${INVERT}${DB}${RESET} schema ..."
+    mysql -u $LOGIN -p$PASS -h $HOST < "${SQLPATH}01-create-database.sql"
+    echo "Done..."
+    echo -e "Creating ${BOLD}${YELLOW}${INVERT}tables${RESET}..."
+    mysql -u $LOGIN -p$PASS -h $HOST < "${SQLPATH}02-tables-and-views.sql"
+    echo "Done..."
+    echo ""
     exit 0;
 fi
 
