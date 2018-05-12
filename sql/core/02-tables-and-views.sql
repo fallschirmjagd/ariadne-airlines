@@ -37,6 +37,7 @@ CREATE TABLE fleet (
   registration VARCHAR(10) NOT NULL DEFAULT '',
   delivered DATE DEFAULT NULL,
   config VARCHAR(8) NOT NULL DEFAULT '',
+  seat_count INT(10) NOT NULL DEFAULT '-1',
   PRIMARY KEY (fleet_id),
   UNIQUE KEY (registration)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,4 +56,5 @@ CREATE TABLE flight (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-/*** outstanding... Agents, rel_crew2plane, Booking, Booking2Agent ***/
+
+/*** outstanding... Agents, Booking, Booking2Agent ***/
