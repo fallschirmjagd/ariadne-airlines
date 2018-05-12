@@ -37,6 +37,8 @@ HOST=$2
 LOGIN=$3
 PASS=$4
 
+# HW: Add conditions for DB and HOST not passed as $1 and $2
+
 if [[ -z "${LOGIN// }" ]]
 then
     echo ""
